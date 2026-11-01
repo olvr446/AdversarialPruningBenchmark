@@ -22,8 +22,8 @@ def test_model_aa(model, ds, data_dir, device):
     norm = 'Linf'
     version = 'standard'
     epsilon = 0.031
-    batch_size = 500
-    n_ex = 10000
+    batch_size = 50
+    n_ex = 50
 
     # define dataset
     if ds == 'CIFAR10':

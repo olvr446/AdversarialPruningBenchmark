@@ -52,17 +52,12 @@ class Block(nn.Module):
         output = F.relu(output)
         return output
     
-ds = torchvision.datasets.CIFAR10("./data", train=True, download=True,
-                                  transform=T.ToTensor())
-data = torch.tensor(ds.data).float() / 255
-print(data.mean(dim=(0, 2, 3)))
-print(data.std(dim=(0, 2, 3)))
 
 class ResNet18(nn.Module):
     def __init__(self, cifar_classes=10):
         super().__init__()
         self.register_buffer("mean", torch.tensor([0.4914, 0.4822, 0.4465]).view(1, 3, 1, 1))
-        self.register_buffer("stdev", torch.tensor([0.2471, 0.2435, 0.2616]).view(1, 3, 1, 1))
+        self.register_buffer("std", torch.tensor([0.2470, 0.2435, 0.2616]).view(1, 3, 1, 1))
         
         self.stemConv = nn.Conv2d(
             in_channels=3,
@@ -101,7 +96,6 @@ class ResNet18(nn.Module):
 model = ResNet18()
 print(model(torch.randn(8, 3, 32, 32)).shape)
 print(sum(p.numel() for p in model.parameters()))
-# print(model.state_dict().keys())
 
 
 

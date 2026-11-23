@@ -93,9 +93,10 @@ class ResNet18(nn.Module):
         output = self.final(output)
         return output
 
-model = ResNet18()
-print(model(torch.randn(8, 3, 32, 32)).shape)
-print(sum(p.numel() for p in model.parameters()))
+if __name__ == "__main__":
+    model = ResNet18()
+    print(model(torch.randn(8, 3, 32, 32)).shape)
+
 
 
 

@@ -1,0 +1,13 @@
+from newResNet18 import ResNet18
+import torch
+import torch.nn as nn
+from torch.utils.data import DataLoader
+from torch.utils.data import Subset
+import torchvision
+import torchvision.transforms as T
+
+x = torch.tensor([1.0, 2.0], requires_grad=True)
+loss = (x ** 2).sum()
+g, = torch.autograd.grad(loss, x)
+print(g)
+print(x.grad)
